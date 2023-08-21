@@ -38,13 +38,7 @@ function MovieDetails() {
             </h3>
             <img src = {selectedMovie.img} alt = {selectedMovie.title}/>
             {officialTrailer && (
-                <iframe
-                    width = "560"
-                    height = "315"
-                    src = {`${YOUTUBE_LINK}${officialTrailer.key}`}
-                    title = "YouTube video player"
-                    allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                ></iframe>
+                <iframe width = "560" height = "315" src = {`${YOUTUBE_LINK}${officialTrailer.key}`}></iframe>
             )}
             <p>{selectedMovie.description}</p>
         </div>
