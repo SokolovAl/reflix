@@ -1,0 +1,10 @@
+.movies-list {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    line-height: 5;
+}
+
+.category-title {
+    margin-bottom: 2rem;
+    font-family: cursive;
+}
