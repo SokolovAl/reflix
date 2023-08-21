@@ -1,11 +1,11 @@
-import { useParams } from "react-router-dom";
+import {useParams} from "react-router-dom";
 import "../style/MovieDetails.css";
 import fetchMovieDetailsData from "../utils/fetchMovieDetailsData";
 import fetchMovieTrailer from "../utils/fetchMovieTrailer";
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 
 function MovieDetails() {
-    const { movieId } = useParams();
+    const {movieId} = useParams();
     const [selectedMovie, setSelectedMovie] = useState(null);
     const [officialTrailer, setOfficialTrailer] = useState("");
 
@@ -31,18 +31,18 @@ function MovieDetails() {
     }
 
     return (
-        <div className="container">
+        <div className = "container">
             <h3>
                 {selectedMovie.title} ({selectedMovie.year})
             </h3>
-            <img src={selectedMovie.img} alt={selectedMovie.title} />
+            <img src = {selectedMovie.img} alt = {selectedMovie.title}/>
             {officialTrailer && (
                 <iframe
-                    width="560"
-                    height="315"
-                    src={`https://www.youtube.com/embed/${officialTrailer.key}`}
-                    title="YouTube video player"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    width = "560"
+                    height = "315"
+                    src = {`https://www.youtube.com/embed/${officialTrailer.key}`}
+                    title = "YouTube video player"
+                    allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 ></iframe>
             )}
             <p>{selectedMovie.description}</p>
