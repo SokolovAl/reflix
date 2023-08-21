@@ -1,19 +1,19 @@
 .movie-img {
-  width: 15rem;
-  height: 20rem;
+    width: 15rem;
+    height: 20rem;
 }
 
 .movie-img:hover {
-  box-shadow: white 0px 5px 15px;
+    box-shadow: white 0 5px 15px;
 }
 
 .icon {
-  cursor: pointer;
-  position: absolute;
-  top: 0.5rem;
-  left: 13rem;
+    cursor: pointer;
+    position: absolute;
+    top: 0.5rem;
+    left: 13rem;
 }
 
 .movie-box {
-  position: relative;
+    position: relative;
 }

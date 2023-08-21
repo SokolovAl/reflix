@@ -1,4 +1,3 @@
-
 import {useParams} from "react-router-dom";
 import "../style/MovieDetails.css";
 import fetchMovieDetailsData from "../utils/fetchMovieDetailsData";

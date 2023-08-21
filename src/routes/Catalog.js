@@ -3,7 +3,7 @@ import {MOVIE_COST} from "../utils/constants";
 import fetchMoviesData from "../utils/fetchMovieData";
 import MoviesList from "../components/MoviesList";
 import {useParams} from "react-router-dom";
-import "../style/Catalog.css"
+import "../style/Catalog.css";
 
 function Catalog() {
     const {userId} = useParams();
@@ -12,7 +12,6 @@ function Catalog() {
     const [searchMovie, setSearchMovie] = useState("");
     const [budget, setBudget] = useState(user.budget);
     const [topMovieList, setTopMovieList] = useState([]);
-
 
     let rentedMovies = movies.filter((movie) => movie.isRented === true);
 
@@ -37,7 +36,6 @@ function Catalog() {
             setMovies(filteredMovies);
         }
     };
-
 
     const updateBudget = (updatedBudget) => {
         setBudget(updatedBudget);
@@ -76,7 +74,7 @@ function Catalog() {
             .then((fetchedMovies) => {
                 getUserRentedMovies(user.rentedMoviesIds, fetchedMovies);
                 setMovies(fetchedMovies);
-                setTopMovieList(fetchedMovies)
+                setTopMovieList(fetchedMovies);
             })
             .catch((error) => {
                 console.error("Error fetching movies data:", error);

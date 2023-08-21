@@ -1,4 +1,4 @@
-import {IMG_API_LINK, TOP_MOVIES_API_LINK, options} from "./constants";
+import {IMG_API_LINK, options, TOP_MOVIES_API_LINK} from "./constants";
 
 const fetchMoviesData = () => {
     return fetch(TOP_MOVIES_API_LINK, options)
