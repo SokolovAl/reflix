@@ -17,3 +17,5 @@ export const MOVIE_DETAIL_API_LINK = `${API_LINK}movie/`;
 export const IMG_API_LINK = "https://image.tmdb.org/t/p/w500";
 
 export const TOP_MOVIES_API_LINK = `${API_LINK}trending/movie/day${LANGUAGE_PART_OF_API_LINK}`;
+
+export const YOUTUBE_LINK = "https://www.youtube.com/embed/"

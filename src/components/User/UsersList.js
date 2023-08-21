@@ -1,7 +1,7 @@
-import "../style/UserList.css";
+import "./UserList.css";
 import {Link} from "react-router-dom";
 import User from "./User";
-import {BUDGET} from "../utils/constants";
+import {BUDGET} from "../../utils/constants";
 
 function UsersList({users}) {
     return (

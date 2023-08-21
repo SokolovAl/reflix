@@ -1,6 +1,6 @@
-import logo from "../REFLIX.png";
+import logo from "../../assets/REFLIX.png";
 import {Link, useLocation} from "react-router-dom";
-import "../style/Navbar.css";
+import "./Navbar.css";
 
 function NavBar() {
     const location = useLocation();

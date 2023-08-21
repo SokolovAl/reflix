@@ -1,4 +1,4 @@
-import "../style/MovieList.css";
+import "./MovieList.css";
 import Movie from "./Movie";
 
 function MoviesList({movies, catalogTitle, rent, unRent}) {

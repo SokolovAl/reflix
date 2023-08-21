@@ -1,9 +1,9 @@
 import "./style/App.css";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
-import NavBar from "./components/NavBar";
-import Home from "./routes/Home";
-import Catalog from "./routes/Catalog";
-import MovieDetails from "./routes/MovieDetails";
+import NavBar from "./components/NavBar/NavBar";
+import Home from "./routes/Home/Home";
+import Catalog from "./routes/Catalog/Catalog";
+import MovieDetails from "./routes/MovieDetails/MovieDetails";
 
 function App() {
     return (

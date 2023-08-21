@@ -1,4 +1,4 @@
-import "../style/User.css";
+import "./User.css";
 
 function User({user}) {
     return (
