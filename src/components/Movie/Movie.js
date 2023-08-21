@@ -1,4 +1,4 @@
-import "../style/Movie.css";
+import "./Movie.css";
 import {Link, useLocation} from "react-router-dom";
 
 function Movie({movie, rent, unRent}) {

@@ -1,9 +1,9 @@
 import {useEffect, useState} from "react";
-import {MOVIE_COST} from "../utils/constants";
-import fetchMoviesData from "../utils/fetchMovieData";
-import MoviesList from "../components/MoviesList";
+import {MOVIE_COST} from "../../utils/constants";
+import fetchMoviesData from "../../utils/fetchMovieData";
+import MoviesList from "../../components/Movie/MoviesList";
 import {useParams} from "react-router-dom";
-import "../style/Catalog.css";
+import "./Catalog.css";
 
 function Catalog() {
     const {userId} = useParams();
