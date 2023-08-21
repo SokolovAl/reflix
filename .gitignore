@@ -57,4 +57,4 @@ build/Release
 node_modules
 
 # secrets
-./src/utils/api_token.json
+secrets

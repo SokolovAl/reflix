@@ -1,4 +1,4 @@
-import secret from "./api_token.json";
+import secret from "../secrets/api_token.json";
 
 export const BUDGET = 15;
 export const MOVIE_COST = 3;
