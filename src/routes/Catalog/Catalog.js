@@ -13,7 +13,7 @@ function Catalog() {
     const [budget, setBudget] = useState(user.budget);
     const [topMovieList, setTopMovieList] = useState([]);
 
-    let rentedMovies = movies.filter((movie) => movie.isRented === true);
+    const rentedMovies = movies.filter((movie) => movie.isRented === true);
 
     const getUserRentedMovies = (rentedMoviesIds, movies) => {
         movies.forEach((movie) => {
@@ -30,7 +30,7 @@ function Catalog() {
         if (searchMovie === "") {
             setMovies(topMovieList);
         } else {
-            let filteredMovies = topMovieList.filter((movie) =>
+            const filteredMovies = topMovieList.filter((movie) =>
                 movie.title.toLowerCase().includes(searchMovie.toLowerCase())
             );
             setMovies(filteredMovies);
@@ -44,8 +44,8 @@ function Catalog() {
     };
 
     const updateMovieRentalStatus = (movieId, isRented) => {
-        let moviesCopy = [...movies];
-        let movie = moviesCopy.find((movie) => movie.id === movieId);
+        const moviesCopy = [...movies];
+        const movie = moviesCopy.find((movie) => movie.id === movieId);
         movie.isRented = isRented;
         setMovies(moviesCopy);
     };
@@ -56,14 +56,14 @@ function Catalog() {
             return;
         }
         user.rentedMoviesIds.push(movieId);
-        let updatedBudget = budget - MOVIE_COST;
+        const updatedBudget = budget - MOVIE_COST;
         updateBudget(updatedBudget);
         updateMovieRentalStatus(movieId, true);
     };
 
     const unRent = (movieId) => {
-        let updatedBudget = budget + MOVIE_COST;
-        let movieIndex = user.rentedMoviesIds.findIndex((id) => id === movieId);
+        const updatedBudget = budget + MOVIE_COST;
+        const movieIndex = user.rentedMoviesIds.findIndex((id) => id === movieId);
         user.rentedMoviesIds.splice(movieIndex, 1);
         updateBudget(updatedBudget);
         updateMovieRentalStatus(movieId, false);

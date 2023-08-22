@@ -5,6 +5,7 @@ const fetchMovieDetailsData = (movieID) => {
         .then(response => response.json())
         .then(data => {
             const year = new Date(data.release_date).getFullYear();
+
             return {
                 id: data.id,
                 title: data.title,
