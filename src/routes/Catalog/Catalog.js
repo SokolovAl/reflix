@@ -52,7 +52,7 @@ function Catalog() {
 
     const rent = (movieId) => {
         if (budget - MOVIE_COST < 0) {
-            alert("There are insufficient funds");
+            alert("Not enough money");
             return;
         }
         user.rentedMoviesIds.push(movieId);
