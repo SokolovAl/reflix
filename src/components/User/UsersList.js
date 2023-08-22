@@ -9,7 +9,7 @@ function UsersList({users}) {
             <h2>WHO'S WATCHING?</h2>
             <div className = "users-container">
                 {users.map((user) => {
-                    let savedUser = localStorage[user.id];
+                    const savedUser = localStorage[user.id];
 
                     if (!savedUser) {
                         localStorage.setItem(
