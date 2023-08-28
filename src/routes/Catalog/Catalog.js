@@ -7,19 +7,13 @@ import "./Catalog.css";
 
 function Catalog() {
     const {userId} = useParams();
-    const user = JSON.parse(localStorage[userId]);
     const [movies, setMovies] = useState([]);
     const [searchMovie, setSearchMovie] = useState("");
+    const user = JSON.parse(localStorage[userId]);
     const [budget, setBudget] = useState(user.budget);
     const [topMovieList, setTopMovieList] = useState([]);
 
     const rentedMovies = movies.filter((movie) => movie.isRented === true);
-
-    const getUserRentedMovies = (rentedMoviesIds, movies) => {
-        movies.forEach((movie) => {
-            movie.isRented = rentedMoviesIds.includes(movie.id);
-        });
-    };
 
     const updateSearchMovie = (event) => {
         setSearchMovie(event.target.value);
@@ -72,7 +66,9 @@ function Catalog() {
     useEffect(() => {
         fetchMoviesData()
             .then((fetchedMovies) => {
-                getUserRentedMovies(user.rentedMoviesIds, fetchedMovies);
+                fetchedMovies.forEach((movie) => {
+                    movie.isRented = user.rentedMoviesIds.includes(movie.id);
+                });
                 setMovies(fetchedMovies);
                 setTopMovieList(fetchedMovies);
             })
@@ -84,13 +80,22 @@ function Catalog() {
     return (
         <div>
             <div className = "search-and-budget">
-                <input id = "search-input" type = "text" value = {searchMovie} placeholder = "Search"
-                       onChange = {updateSearchMovie}
+                <input
+                    id = "search-input"
+                    type = "text"
+                    value = {searchMovie}
+                    placeholder = "Search"
+                    onChange = {updateSearchMovie}
                 />
                 <span id = "budget">Budget: ${budget.toFixed(2)}</span>
             </div>
             {rentedMovies.length !== 0 ? (
-                <MoviesList movies = {rentedMovies} catalogTitle = {"Rented"} rent = {rent} unRent = {unRent}/>
+                <MoviesList
+                    movies = {rentedMovies}
+                    catalogTitle = {"Rented"}
+                    rent = {rent}
+                    unRent = {unRent}
+                />
             ) : (
                 <></>
             )}

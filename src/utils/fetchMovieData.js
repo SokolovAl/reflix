@@ -22,4 +22,3 @@ const fetchMoviesData = () => {
 };
 
 export default fetchMoviesData;
-
