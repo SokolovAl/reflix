@@ -5,6 +5,7 @@ import MoviesList from "../../components/Movie/MoviesList";
 import {useParams} from "react-router-dom";
 import "./Catalog.css";
 import Modal from "../../components/Modal/Modal";
+import fetchMovieGif from "../../utils/fetchMovieGif";
 
 function Catalog() {
     const {userId} = useParams();
@@ -15,7 +16,7 @@ function Catalog() {
     const [topMovieList, setTopMovieList] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [rentedMovieName, setRentedMovieName] = useState("");
-    const [movieGif, setMovieGif] = useState("");
+    const [movieGif, setMovieGif] = useState(null);
 
     const rentedMovies = movies.filter((movie) => movie.isRented === true);
 
@@ -59,7 +60,13 @@ function Catalog() {
         updateBudget(updatedBudget);
         updateMovieRentalStatus(movieId, true);
         setRentedMovieName(movieTitle);
+        setMovieGif(null);
         setShowModal(true);
+
+        fetchMovieGif(movieTitle)
+            .then(fetchedGif => {
+                setMovieGif(fetchedGif);
+            });
     };
 
     const unRent = (movieId, movieTitle) => {
