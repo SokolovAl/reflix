@@ -5,11 +5,11 @@ function Modal({movieTitle, movieGif, closeModal}) {
     return (
         <div className = "modal">
             <div className = "modal-content">
-                Rented {movieTitle} successfully!
+                Rented <span id = "movie-title">{movieTitle}</span> successfully!
                 <button className = "close-button" onClick = {closeModal}>
                     x
                 </button>
-                <iframe className="modal-gif" src = {movieGif} width = "50" height = "50"></iframe>
+                {/* <iframe className="modal-gif" src = {movieGif} width = "50" height = "50"></iframe> */}
             </div>
         </div>
     )

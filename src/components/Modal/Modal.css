@@ -32,6 +32,8 @@
     right: 5px;
 }
 
-.modal-gif {
-    position: relative;
+#movie-title {
+    color: #6596a5;
+    font-family: cursive;
+    font-weight: lighter;
 }
