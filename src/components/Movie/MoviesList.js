@@ -8,7 +8,8 @@ function MoviesList({movies, catalogTitle, rent, unRent}) {
             <h4 className = "category-title">{catalogTitle}</h4>
             <div className = "movies-list">
                 {movies.map((movie) => (
-                    <Movie key = {movie.id} movie = {movie} rent = {rent} unRent = {unRent}/>
+                    <Movie key = {movie.id} movie = {movie} rent = {() => rent(movie.id, movie.title)}
+                           unRent = {() => unRent(movie.id, movie.title)}/>
                 ))}
             </div>
         </div>

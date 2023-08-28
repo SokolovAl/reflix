@@ -4,6 +4,8 @@ import fetchMoviesData from "../../utils/fetchMovieData";
 import MoviesList from "../../components/Movie/MoviesList";
 import {useParams} from "react-router-dom";
 import "./Catalog.css";
+import Modal from "../../components/Modal/Modal";
+import fetchMovieGif from "../../utils/fetchMovieGif";
 
 function Catalog() {
     const {userId} = useParams();
@@ -12,6 +14,9 @@ function Catalog() {
     const user = JSON.parse(localStorage[userId]);
     const [budget, setBudget] = useState(user.budget);
     const [topMovieList, setTopMovieList] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+    const [rentedMovieName, setRentedMovieName] = useState("");
+    const [movieGif, setMovieGif] = useState(null);
 
     const rentedMovies = movies.filter((movie) => movie.isRented === true);
 
@@ -44,23 +49,36 @@ function Catalog() {
         setMovies(moviesCopy);
     };
 
-    const rent = (movieId) => {
+    const rent = (movieId, movieTitle) => {
         if (budget - MOVIE_COST < 0) {
             alert("Not enough money");
             return;
         }
+
         user.rentedMoviesIds.push(movieId);
         const updatedBudget = budget - MOVIE_COST;
         updateBudget(updatedBudget);
         updateMovieRentalStatus(movieId, true);
+        setRentedMovieName(movieTitle);
+        setMovieGif(null);
+        setShowModal(true);
+
+        fetchMovieGif(movieTitle)
+            .then(fetchedGif => {
+                setMovieGif(fetchedGif);
+            });
     };
 
-    const unRent = (movieId) => {
+    const unRent = (movieId, movieTitle) => {
         const updatedBudget = budget + MOVIE_COST;
         const movieIndex = user.rentedMoviesIds.findIndex((id) => id === movieId);
         user.rentedMoviesIds.splice(movieIndex, 1);
         updateBudget(updatedBudget);
         updateMovieRentalStatus(movieId, false);
+    };
+
+    const closeModal = () => {
+        setShowModal(false);
     };
 
     useEffect(() => {
@@ -90,16 +108,14 @@ function Catalog() {
                 <span id = "budget">Budget: ${budget.toFixed(2)}</span>
             </div>
             {rentedMovies.length !== 0 ? (
-                <MoviesList
-                    movies = {rentedMovies}
-                    catalogTitle = {"Rented"}
-                    rent = {rent}
-                    unRent = {unRent}
-                />
+                <MoviesList movies = {rentedMovies} catalogTitle = {"Rented"} rent = {rent} unRent = {unRent}/>
             ) : (
                 <></>
             )}
             <MoviesList movies = {movies} catalogTitle = {"Catalog"} rent = {rent} unRent = {unRent}/>
+            {showModal && (
+                <Modal movieTitle = {rentedMovieName} movieGif = {movieGif} closeModal = {closeModal}/>
+            )}
         </div>
     );
 }

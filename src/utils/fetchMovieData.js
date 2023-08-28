@@ -1,7 +1,7 @@
-import {IMG_API_LINK, options, TOP_MOVIES_API_LINK} from "./constants";
+import {IMG_API_LINK, OPTIONS, TOP_MOVIES_API_LINK} from "./constants";
 
 const fetchMoviesData = () => {
-    return fetch(TOP_MOVIES_API_LINK, options)
+    return fetch(TOP_MOVIES_API_LINK, OPTIONS)
         .then((response) => response.json())
         .then((data) => {
             const firstTopMovies = data.results.slice(0, 12);
