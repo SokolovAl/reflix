@@ -4,6 +4,7 @@ import fetchMoviesData from "../../utils/fetchMovieData";
 import MoviesList from "../../components/Movie/MoviesList";
 import {useParams} from "react-router-dom";
 import "./Catalog.css";
+import Modal from "../../components/Modal/Modal";
 
 function Catalog() {
     const {userId} = useParams();
@@ -12,6 +13,8 @@ function Catalog() {
     const user = JSON.parse(localStorage[userId]);
     const [budget, setBudget] = useState(user.budget);
     const [topMovieList, setTopMovieList] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+    const [rentedMovieName, setRentedMovieName] = useState("");
 
     const rentedMovies = movies.filter((movie) => movie.isRented === true);
 
@@ -44,7 +47,7 @@ function Catalog() {
         setMovies(moviesCopy);
     };
 
-    const rent = (movieId) => {
+    const rent = (movieId, movieTitle) => {
         if (budget - MOVIE_COST < 0) {
             alert("Not enough money");
             return;
@@ -53,6 +56,9 @@ function Catalog() {
         const updatedBudget = budget - MOVIE_COST;
         updateBudget(updatedBudget);
         updateMovieRentalStatus(movieId, true);
+        setRentedMovieName(movieTitle);
+        setRentedMovieName(movieTitle);
+        setShowModal(true);
     };
 
     const unRent = (movieId) => {
@@ -61,6 +67,10 @@ function Catalog() {
         user.rentedMoviesIds.splice(movieIndex, 1);
         updateBudget(updatedBudget);
         updateMovieRentalStatus(movieId, false);
+    };
+
+    const closeModal = () => {
+        setShowModal(false);
     };
 
     useEffect(() => {
@@ -90,16 +100,14 @@ function Catalog() {
                 <span id = "budget">Budget: ${budget.toFixed(2)}</span>
             </div>
             {rentedMovies.length !== 0 ? (
-                <MoviesList
-                    movies = {rentedMovies}
-                    catalogTitle = {"Rented"}
-                    rent = {rent}
-                    unRent = {unRent}
-                />
+                <MoviesList movies = {rentedMovies} catalogTitle = {"Rented"} rent = {rent} unRent = {unRent}/>
             ) : (
                 <></>
             )}
             <MoviesList movies = {movies} catalogTitle = {"Catalog"} rent = {rent} unRent = {unRent}/>
+            {showModal && (
+                <Modal movieName = {rentedMovieName} closeModal = {closeModal}/>
+            )}
         </div>
     );
 }
