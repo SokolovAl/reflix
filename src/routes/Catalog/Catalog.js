@@ -15,6 +15,7 @@ function Catalog() {
     const [topMovieList, setTopMovieList] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [rentedMovieName, setRentedMovieName] = useState("");
+    const [movieGif, setMovieGif] = useState("");
 
     const rentedMovies = movies.filter((movie) => movie.isRented === true);
 
@@ -52,16 +53,16 @@ function Catalog() {
             alert("Not enough money");
             return;
         }
+
         user.rentedMoviesIds.push(movieId);
         const updatedBudget = budget - MOVIE_COST;
         updateBudget(updatedBudget);
         updateMovieRentalStatus(movieId, true);
         setRentedMovieName(movieTitle);
-        setRentedMovieName(movieTitle);
         setShowModal(true);
     };
 
-    const unRent = (movieId) => {
+    const unRent = (movieId, movieTitle) => {
         const updatedBudget = budget + MOVIE_COST;
         const movieIndex = user.rentedMoviesIds.findIndex((id) => id === movieId);
         user.rentedMoviesIds.splice(movieIndex, 1);
@@ -106,7 +107,7 @@ function Catalog() {
             )}
             <MoviesList movies = {movies} catalogTitle = {"Catalog"} rent = {rent} unRent = {unRent}/>
             {showModal && (
-                <Modal movieName = {rentedMovieName} closeModal = {closeModal}/>
+                <Modal movieTitle = {rentedMovieName} movieGif = {movieGif} closeModal = {closeModal}/>
             )}
         </div>
     );

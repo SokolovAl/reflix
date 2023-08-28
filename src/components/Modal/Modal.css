@@ -31,3 +31,7 @@
     top: 5px;
     right: 5px;
 }
+
+.modal-gif {
+    position: relative;
+}

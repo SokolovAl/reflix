@@ -1,7 +1,7 @@
-import {IMG_API_LINK, LANGUAGE_PART_OF_API_LINK, MOVIE_DETAIL_API_LINK, options} from "./constants";
+import {IMG_API_LINK, LANGUAGE_PART_OF_API_LINK, MOVIE_DETAIL_API_LINK, OPTIONS} from "./constants";
 
 const fetchMovieDetailsData = (movieID) => {
-    return fetch(`${MOVIE_DETAIL_API_LINK}${movieID}${LANGUAGE_PART_OF_API_LINK}`, options)
+    return fetch(`${MOVIE_DETAIL_API_LINK}${movieID}${LANGUAGE_PART_OF_API_LINK}`, OPTIONS)
         .then(response => response.json())
         .then(data => {
             const year = new Date(data.release_date).getFullYear();
