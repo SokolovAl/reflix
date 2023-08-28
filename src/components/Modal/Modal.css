@@ -37,3 +37,9 @@
     font-family: cursive;
     font-weight: lighter;
 }
+
+.modal-gif {
+    height: auto;
+    width: 100%;
+    max-height: 300px;
+}

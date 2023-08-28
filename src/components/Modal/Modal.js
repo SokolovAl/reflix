@@ -9,7 +9,7 @@ function Modal({movieTitle, movieGif, closeModal}) {
                 <button className = "close-button" onClick = {closeModal}>
                     x
                 </button>
-                <iframe className="modal-gif" src = {movieGif} width = "50" height = "50"></iframe>
+                <iframe className = "modal-gif" src = {movieGif}></iframe>
             </div>
         </div>
     )
